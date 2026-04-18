@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Display Quality Study Guide 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0f0f14;--surface:#1a1a24;--surface2:#24243a;--text:#e4e4e7;--text2:#a1a1aa;--accent:#10b981;--accent2:#059669;--border:#2a2a3a;--radius:10px;--shadow:0 2px 12px rgba(0,0,0,.3)}
+[data-theme="light"]{--bg:#f5f5f7;--surface:#ffffff;--surface2:#f0f0f2;--text:#18181b;--text2:#52525b;--accent:#059669;--accent2:#047857;--border:#e4e4e7;--shadow:0 2px 12px rgba(0,0,0,.08)}
+body{font-family:'Noto Sans KR','Inter',sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;min-height:100vh}
+/* Splash */
+#splash{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s}
+#splash.hide{opacity:0;pointer-events:none}
+#splash h1{font-size:clamp(1.4rem,4vw,2.2rem);font-weight:700;color:var(--accent);margin-bottom:.5rem;text-align:center;padding:0 1rem}
+#splash p{color:var(--text2);font-size:.95rem}
+#splash .bar{width:120px;height:3px;background:var(--border);border-radius:2px;margin-top:1.5rem;overflow:hidden}
+#splash .bar span{display:block;height:100%;width:0;background:var(--accent);border-radius:2px;animation:load 1.2s ease forwards}
+@keyframes load{to{width:100%}}
+/* Header */
+header{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--border);backdrop-filter:blur(12px)}
+.header-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.75rem 1.25rem}
+.logo{font-weight:700;font-size:1.05rem;color:var(--accent);white-space:nowrap}
+.header-actions{display:flex;align-items:center;gap:.75rem}
+.theme-btn{background:none;border:1px solid var(--border);color:var(--text);border-radius:8px;padding:6px 10px;cursor:pointer;font-size:1rem;transition:border-color .2s}
+.theme-btn:hover{border-color:var(--accent)}
+.hamburger{display:none;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-btn{background:none;border:none;color:var(--text2);padding:.7rem 1rem;font-size:.82rem;font-family:inherit;white-space:nowrap;cursor:pointer;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.nav-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.nav-btn:hover{color:var(--text)}
+/* Main */
+main{max-width:960px;margin:0 auto;padding:1.25rem}
+.tab{display:none}
+.tab.active{display:block}
+/* Cards */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:.75rem;box-shadow:var(--shadow);overflow:hidden}
+.card-header{padding:.85rem 1rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-weight:600;font-size:.92rem;user-select:none;transition:background .15s}
+.card-header:hover{background:var(--surface2)}
+.card-header .arrow{transition:transform .2s;color:var(--text2);font-size:.75rem}
+.card.open .arrow{transform:rotate(90deg)}
+.card-body{padding:0 1rem;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s}
+.card.open .card-body{padding:.25rem 1rem 1rem;max-height:4000px}
+.card-body p,.card-body li{font-size:.88rem;line-height:1.7;color:var(--text2)}
+.card-body strong{color:var(--text)}
+.card-body ul{padding-left:1.2rem;margin:.4rem 0}
+/* Tables */
+.tbl-wrap{overflow-x:auto;margin:.6rem 0}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{background:var(--accent);color:#fff;padding:.55rem .6rem;text-align:left;font-weight:600;white-space:nowrap}
+td{padding:.5rem .6rem;border-bottom:1px solid var(--border);color:var(--text2);white-space:nowrap}
+tr:hover td{background:var(--surface2)}
+/* Roadmap */
+.phase{position:relative;padding-left:2rem;margin-bottom:1.5rem}
+.phase::before{content:'';position:absolute;left:.55rem;top:0;bottom:0;width:2px;background:var(--border)}
+.phase-dot{width:14px;height:14px;border-radius:50%;background:var(--accent);position:absolute;left:0;top:.15rem;border:2px solid var(--bg)}
+.phase-title{font-weight:700;font-size:.95rem;color:var(--accent);margin-bottom:.4rem}
+.phase-period{font-size:.78rem;color:var(--text2);margin-bottom:.35rem}
+.phase-items{list-style:none;padding:0}
+.phase-items li{font-size:.86rem;color:var(--text2);padding:.15rem 0;padding-left:.5rem;position:relative}
+.phase-items li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--text2);position:absolute;left:-.6rem;top:.55rem}
+/* Checklist */
+.check-group{margin-bottom:1.2rem}
+.check-group h3{font-size:.9rem;font-weight:600;color:var(--accent);margin-bottom:.5rem;padding-bottom:.3rem;border-bottom:1px solid var(--border)}
+.check-item{display:flex;align-items:center;gap:.6rem;padding:.4rem 0;font-size:.86rem;color:var(--text2)}
+.check-item input[type=checkbox]{accent-color:var(--accent);width:16px;height:16px;cursor:pointer}
+.check-item.done{text-decoration:line-through;opacity:.55}
+/* Progress */
+.progress-bar{background:var(--border);border-radius:6px;height:8px;margin:1rem 0;overflow:hidden}
+.progress-fill{height:100%;background:var(--accent);border-radius:6px;transition:width .4s}
+.progress-text{font-size:.82rem;color:var(--text2);text-align:right}
+/* Section title */
+.sec-title{font-size:1.1rem;font-weight:700;margin-bottom:.8rem;color:var(--text);display:flex;align-items:center;gap:.5rem}
+.sec-title span{font-size:1.2rem}
+/* Reference links */
+.ref-group{margin-bottom:1rem}
+.ref-group h3{font-size:.9rem;font-weight:600;color:var(--accent);margin-bottom:.4rem}
+.ref-group a{display:block;font-size:.85rem;color:var(--text2);text-decoration:none;padding:.25rem 0;transition:color .15s}
+.ref-group a:hover{color:var(--accent)}
+/* Mobile */
+@media(max-width:700px){
+  .hamburger{display:block}
+  nav{display:none}
+  nav.open{display:block}
+  .nav-inner{flex-direction:column}
+  .nav-btn{text-align:left;padding:.8rem 1.25rem;border-bottom:none;border-left:3px solid transparent}
+  .nav-btn.active{border-left-color:var(--accent);border-bottom-color:transparent}
+}
+</style>
+</head>
+<body>
+<!-- Splash -->
+<div id="splash">
+  <h1>Display Quality Study Guide 2026</h1>
+  <p>TFT 소자 품질 전문가 학습 가이드</p>
+  <div class="bar"><span></span></div>
+</div>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">DQ Study 2026</div>
+    <div class="header-actions">
+      <button class="theme-btn" id="themeBtn" title="테마 전환">🌙</button>
+      <button class="hamburger" id="menuBtn">☰</button>
+    </div>
+  </div>
+</header>
+
+<nav id="navBar">
+  <div class="nav-inner" id="navInner"></div>
+</nav>
+
+<main id="mainContent"></main>
+
+<script>
+const TABS=[
+{id:'roadmap',icon:'📋',label:'학습 로드맵'},
+{id:'tft',icon:'🔬',label:'TFT 소자 기초'},
+{id:'measure',icon:'⚡',label:'측정/분석법'},
+{id:'defect',icon:'🔴',label:'불량 모드'},
+{id:'tools',icon:'📊',label:'품질 도구'},
+{id:'auto',icon:'🚗',label:'Automotive 품질'},
+{id:'ref',icon:'📚',label:'참고 자료'},
+{id:'check',icon:'✅',label:'학습 체크리스트'}
+];
+
+function card(title,body){return `<div class="card"><div class="card-header" onclick="this.parentElement.classList.toggle('open')">${title}<span class="arrow">▶</span></div><div class="card-body">${body}</div></div>`}
+
+const CONTENT={
+roadmap:`<div class="sec-title"><span>📋</span> 학습 로드맵</div>
+<div class="phase"><div class="phase-dot"></div><div class="phase-title">Phase 1: 기초 (1~2주)</div><div class="phase-period">TFT 소자 물리 및 OLED 구조 이해</div><ul class="phase-items"><li>TFT 소자 물리 기초 (MOSFET → TFT)</li><li>LTPS vs IGZO vs LTPO 비교</li><li>OLED 소자 구조 (HIL/HTL/EML/ETL/Cathode)</li><li>디스플레이 구동 원리 (2T1C, LTPO)</li></ul></div>
+<div class="phase"><div class="phase-dot"></div><div class="phase-title">Phase 2: 측정/분석 (2~4주)</div><div class="phase-period">핵심 측정 역량 확보</div><ul class="phase-items"><li>I-V 특성 측정 (Id-Vg, Id-Vd)</li><li>VT (문턱전압) 측정법</li><li>Mobility 추출 방법</li><li>SS (Subthreshold Swing) 분석</li><li>NBTI/PBTI 스트레스 테스트</li><li>DC/AC 실구동 신뢰성 평가</li></ul></div>
+<div class="phase"><div class="phase-dot"></div><div class="phase-title">Phase 3: 불량/신뢰성 (4~8주)</div><div class="phase-period">불량 모드 분석 및 신뢰성 평가</div><ul class="phase-items"><li>불량 모드 분류 (Mura, Pixel, Line, Stain)</li><li>Root Cause Analysis 방법론</li><li>FMEA (Failure Mode & Effects Analysis)</li><li>신뢰성 가속시험 (HTOL, TC, HTS, UHAST)</li><li>Automotive 품질 기준 (AEC-Q 시리즈)</li></ul></div>
+<div class="phase"><div class="phase-dot"></div><div class="phase-title">Phase 4: 품질 시스템 (8~12주)</div><div class="phase-period">품질 관리 체계 및 방법론 내재화</div><ul class="phase-items"><li>SPC (Statistical Process Control)</li><li>6시그마 DMAIC</li><li>8D Report 작성법</li><li>Gate Review 프로세스</li><li>수율 관리 (Yield Waterfall)</li></ul></div>`,
+
+tft:`<div class="sec-title"><span>🔬</span> TFT 소자 기초</div>
+${card('MOSFET → TFT 원리',`<ul><li><strong>Gate, Source, Drain 구조:</strong> Gate 전압으로 채널 전류를 제어하는 3단자 소자</li><li><strong>채널 형성:</strong> Accumulation → Depletion → Inversion 과정으로 전도 채널 생성</li><li><strong>문턱전압 (VT):</strong> 채널이 형성되기 시작하는 Gate 전압. 소자 동작의 기준점</li><li>TFT는 MOSFET과 달리 유리/PI 기판 위 박막(Thin Film)으로 제작</li></ul>`)}
+${card('TFT 종류 비교',`<div class="tbl-wrap"><table><tr><th>항목</th><th>a-Si</th><th>LTPS</th><th>IGZO</th><th>LTPO</th></tr>
+<tr><td><strong>이동도</strong></td><td>0.5~1</td><td>50~100</td><td>10~30</td><td>LTPS+IGZO</td></tr>
+<tr><td><strong>균일성</strong></td><td>좋음</td><td>보통</td><td>매우 좋음</td><td>좋음</td></tr>
+<tr><td><strong>누설전류</strong></td><td>높음</td><td>높음</td><td>매우 낮음</td><td>낮음</td></tr>
+<tr><td><strong>용도</strong></td><td>LCD(구형)</td><td>OLED 모바일</td><td>OLED TV/태블릿</td><td>OLED 모바일(최신)</td></tr>
+<tr><td><strong>VT 안정성</strong></td><td>나쁨</td><td>보통</td><td>좋음(PBTI 주의)</td><td>좋음</td></tr></table></div>`)}
+${card('LTPO (Low-Temperature Polycrystalline Oxide)',`<ul><li><strong>LTPS (driving TFT) + IGZO (switching TFT)</strong> 하이브리드 구조</li><li>IGZO의 극저 누설전류로 <strong>가변 주사율 (1Hz~120Hz)</strong> 구현 → 저전력</li><li>Apple Watch Series 5부터 적용, Galaxy S21 Ultra 이후 확대</li><li>Always-On Display 구현의 핵심 기술</li></ul>`)}
+${card('핵심 파라미터 정리',`<ul><li><strong>VT (Threshold Voltage):</strong> 채널 형성 시작점. OLED 균일도에 직결</li><li><strong>μ (Mobility):</strong> 전자/정공 이동 속도. 구동 전류 결정</li><li><strong>SS (Subthreshold Swing):</strong> on/off 전환 기울기. 이상적: 60mV/dec (RT)</li><li><strong>Ion/Ioff:</strong> on/off 전류비. 10⁶ 이상 필요</li><li><strong>DIBL:</strong> Drain-Induced Barrier Lowering. 단채널 효과 지표</li></ul>`)}`,
+
+measure:`<div class="sec-title"><span>⚡</span> 측정/분석법</div>
+${card('I-V 측정',`<ul><li><strong>Id-Vg (Transfer Curve):</strong> VT, SS, Ion/Ioff, μ 추출 가능. 가장 핵심적인 특성 곡선</li><li><strong>Id-Vd (Output Curve):</strong> 선형 영역 (Vd < Vg-VT) / 포화 영역 (Vd > Vg-VT) 확인</li><li><strong>Hysteresis:</strong> 정방향/역방향 스윕 차이 → 계면 트랩 밀도 (Dit) 지표</li></ul>`)}
+${card('VT 추출법',`<ul><li><strong>Linear Extrapolation Method:</strong> √Id vs Vg 그래프에서 최대 기울기 접선의 x절편</li><li><strong>Constant Current Method:</strong> Id = W/L × 10nA 지점의 Vg 값</li><li><strong>Second Derivative Method:</strong> d²Id/dVg² 최대값에 해당하는 Vg</li></ul>`)}
+${card('신뢰성 스트레스 테스트',`<ul><li><strong>PBTS</strong> (Positive Bias Temperature Stress): VG=+20V, 60°C, 3600s</li><li><strong>NBTS</strong> (Negative Bias Temperature Stress): VG=-20V, 60°C, 3600s</li><li><strong>NBTIS</strong> (+ Illumination): 빛 조사 하 음바이어스 스트레스. IGZO에 특히 중요</li><li><strong>HCI</strong> (Hot Carrier Injection): 고전계 하 캐리어 주입 손상</li><li><strong>평가 기준:</strong> ΔVT < 1V (일반), ΔVT < 0.5V (automotive)</li></ul>`)}
+${card('Mueller Matrix / 편광 분석',`<ul><li><strong>위상차 (Retardance)</strong> 측정: 광학 필름 및 보상 필름 평가</li><li><strong>편광축 (Slow Axis)</strong> 분석: 편광 방향 정밀 측정</li><li><strong>복굴절 (Birefringence)</strong> 맵핑: 공간적 균일성 확인</li><li><strong>장비:</strong> AxoScan/AxoStep (Axometrics) 활용</li></ul>`)}`,
+
+defect:`<div class="sec-title"><span>🔴</span> 불량 모드</div>
+${card('화소 불량',`<ul><li><strong>Dead Pixel (암점):</strong> TFT open 또는 OLED short → 해당 화소 발광 불가</li><li><strong>Bright Pixel (휘점):</strong> TFT short 또는 leakage → 항상 발광 상태</li><li><strong>Stuck Pixel:</strong> 특정 색(R/G/B)에 고정 → 구동 IC 또는 데이터 라인 이상</li></ul>`)}
+${card('Mura (얼룩)',`<ul><li><strong>Spot Mura:</strong> 국부적 밝기 불균일 → TFT VT 산포, OLED 두께 편차</li><li><strong>Line Mura:</strong> 라인 형태 밝기 차이 → 소스 드라이버 출력 편차</li><li><strong>Cloud Mura:</strong> 넓은 영역 얼룩 → 공정 산포 (LTPS 결정화 등)</li><li><strong>Stain:</strong> 이물/오염 → 클린룸 관리 이슈</li><li><strong>핵심 원인:</strong> TFT 균일성, OLED 증착 두께 산포, 봉지(Encap) 불량</li></ul>`)}
+${card('라인 불량',`<ul><li><strong>Gate Line Open/Short:</strong> Gate 신호 전달 불가 → 해당 라인 전체 불량</li><li><strong>Data Line Open/Short:</strong> 데이터 신호 전달 불가 → 세로 줄 불량</li><li><strong>주요 원인:</strong> 공정 중 파티클, 식각(Etch) 불량, 리프트오프 잔여물</li></ul>`)}
+${card('신뢰성 불량',`<ul><li><strong>Burn-in (잔상):</strong> OLED 열화 불균일 → 장시간 고정 패턴 표시 시 발생</li><li><strong>저온 구동 불량:</strong> 저온에서 VT shift 증가 → 화면 밝기 변화</li><li><strong>Dark Spot:</strong> 봉지 결함 → 수분 침투 → 유기물 열화 → 비발광 영역 확대</li></ul>`)}`,
+
+tools:`<div class="sec-title"><span>📊</span> 품질 도구</div>
+${card('SPC (통계적 공정 관리)',`<ul><li><strong>X-bar R Chart:</strong> 평균 및 범위 관리 → 공정 안정성 모니터링</li><li><strong>p Chart:</strong> 불량률 관리 → 로트별 품질 추적</li><li><strong>Cp/Cpk (공정 능력 지수):</strong></li><li>Cp ≥ 1.33 (4σ 수준), Cp ≥ 1.67 (5σ), Cp ≥ 2.0 (6σ)</li><li>Cpk는 공정 치우침 반영 → 실질적 공정 능력 평가</li></ul>`)}
+${card('6시그마 DMAIC',`<ul><li><strong>D (Define):</strong> 문제 정의, CTQ(Critical To Quality) 선정, 프로젝트 헌장</li><li><strong>M (Measure):</strong> 현 수준 측정, MSA(측정 시스템 분석), 데이터 수집 계획</li><li><strong>A (Analyze):</strong> 원인 분석, 가설 검증, 통계 분석 (ANOVA, 회귀 등)</li><li><strong>I (Improve):</strong> 최적 조건 도출, DOE(실험계획법), 개선안 검증</li><li><strong>C (Control):</strong> 관리 계획 수립, SPC 적용, 표준화</li></ul>`)}
+${card('FMEA (고장 모드 영향 분석)',`<ul><li><strong>DFMEA (설계):</strong> 설계 단계에서 잠재적 고장 모드 사전 분석</li><li><strong>PFMEA (공정):</strong> 공정 단계에서 잠재적 고장 모드 사전 분석</li><li><strong>RPN = Severity × Occurrence × Detection</strong></li><li>각 항목 1~10 점수, RPN > 100: 즉시 개선 필요</li><li>Severity ≥ 9: RPN 무관하게 반드시 대책 수립</li></ul>`)}
+${card('8D Report',`<ul><li><strong>D1:</strong> 팀 구성 (Cross-functional Team)</li><li><strong>D2:</strong> 문제 정의 (Is/Is Not 분석)</li><li><strong>D3:</strong> 긴급 대책 (Containment Action)</li><li><strong>D4:</strong> 근본 원인 분석 (5-Why, Fish-bone Diagram)</li><li><strong>D5:</strong> 영구 대책 수립 (Permanent Corrective Action)</li><li><strong>D6:</strong> 영구 대책 실행 및 유효성 검증</li><li><strong>D7:</strong> 재발 방지 (Preventive Action, 수평전개)</li><li><strong>D8:</strong> 종료 및 팀 공유 (Lessons Learned)</li></ul>`)}
+${card('Gate Review 프로세스',`<ul><li><strong>G0:</strong> 과제 기획 → 시장/기술 타당성 검토</li><li><strong>G1:</strong> 개발 착수 승인 → 요구 사양 확정</li><li><strong>G2:</strong> 설계 완료 → 설계 검증(DVT) 결과 확인</li><li><strong>G3:</strong> 시작품 검증 완료 → PVT 결과, 신뢰성 확인</li><li><strong>G4:</strong> 양산 이관 승인 → 양산 준비 상태 확인</li><li><strong>G5:</strong> 양산 안정화 확인 → 수율/품질 목표 달성</li></ul>`)}`,
+
+auto:`<div class="sec-title"><span>🚗</span> Automotive 품질</div>
+${card('AEC-Q 시리즈',`<ul><li><strong>AEC-Q100:</strong> IC 신뢰성 시험 규격 (등급별 온도 범위 상이)</li><li><strong>AEC-Q101:</strong> 개별 반도체(디스크리트) 신뢰성</li><li><strong>AEC-Q104:</strong> 멀티칩 모듈 신뢰성</li><li><strong>AEC-Q200:</strong> 수동 부품 (저항, 캐패시터 등) 신뢰성</li></ul>`)}
+${card('Automotive 신뢰성 시험',`<ul><li><strong>HTOL:</strong> High Temperature Operating Life, 105°C, 1000h 동작</li><li><strong>TC:</strong> Temperature Cycling, -40~85°C, 1000 cycles</li><li><strong>HTS:</strong> High Temperature Storage, 150°C, 1000h 보관</li><li><strong>UHAST:</strong> 130°C, 85%RH, 96h (비편향 가속 수명)</li><li><strong>ESD:</strong> HBM ±2kV, CDM ±500V</li></ul>`)}
+${card('IATF 16949 핵심 요소',`<ul><li>자동차 산업 <strong>품질경영시스템(QMS)</strong> 국제 표준</li><li><strong>APQP:</strong> Advanced Product Quality Planning — 사전 품질 계획</li><li><strong>PPAP:</strong> Production Part Approval Process — 양산 부품 승인</li><li><strong>CP:</strong> Control Plan — 공정 관리 계획서</li><li><strong>Core Tools:</strong> FMEA, MSA, SPC, APQP, PPAP</li></ul>`)}
+${card('Automotive vs Mobile 비교',`<div class="tbl-wrap"><table><tr><th>항목</th><th>Mobile</th><th>Automotive</th></tr>
+<tr><td><strong>수명</strong></td><td>2~3년</td><td>15년+</td></tr>
+<tr><td><strong>온도</strong></td><td>-20~45°C</td><td>-40~105°C</td></tr>
+<tr><td><strong>진동</strong></td><td>없음</td><td>있음 (ISO 16750)</td></tr>
+<tr><td><strong>불량률</strong></td><td>수백 ppm</td><td>&lt; 1 ppm</td></tr>
+<tr><td><strong>인증</strong></td><td>없음</td><td>AEC-Q, IATF 16949</td></tr></table></div>`)}`,
+
+ref:`<div class="sec-title"><span>📚</span> 참고 자료</div>
+<div class="ref-group"><h3>교과서</h3><a href="#">Streetman — "Solid State Electronic Devices" (반도체 물리 기본서)</a><a href="#">Sze — "Semiconductor Devices: Physics and Technology" (소자 물리)</a><a href="#">Kagan — "Thin-Film Transistors" (TFT 전문서)</a></div>
+<div class="ref-group"><h3>학회 / 컨퍼런스</h3><a href="https://displayweek.org" target="_blank">SID Display Week (displayweek.org)</a><a href="#">IMID — International Meeting on Information Display</a><a href="#">IDW — International Display Workshops</a></div>
+<div class="ref-group"><h3>온라인 강의</h3><a href="#">Coursera — Semiconductor Physics / Display Technology</a><a href="#">edX — Solid State Devices 강의</a><a href="#">YouTube — EE 전공 TFT 강의 시리즈</a></div>
+<div class="ref-group"><h3>삼성 내부 (사내 접근)</h3><a href="#">Quality Gate 규정 — 단계별 품질 검증 기준</a><a href="#">FMEA 템플릿 — 설계/공정 FMEA 작성 양식</a><a href="#">SPC 가이드 — 공정 능력 관리 매뉴얼</a></div>
+<div class="ref-group"><h3>논문 DB</h3><a href="https://ieeexplore.ieee.org" target="_blank">IEEE Xplore</a><a href="https://www.nature.com" target="_blank">Nature</a><a href="https://www.sciencedirect.com" target="_blank">ScienceDirect</a></div>`,
+
+check:'DYNAMIC'
+};
+
+const CHECKLIST=[
+{group:'TFT 기초',items:['MOSFET 동작 원리 이해','LTPS/IGZO/LTPO 차이점 설명 가능','I-V 특성 곡선 해석 가능','VT, μ, SS 정의 설명 가능']},
+{group:'측정/분석',items:['Id-Vg 커브에서 VT 추출 가능','PBTS/NBTS 스트레스 테스트 이해','ΔVT 합격 기준 설명 가능','DC/AC 실구동 평가 이해']},
+{group:'불량 분석',items:['Mura 종류 5가지 구분 가능','Dead/Bright/Stuck Pixel 원인 설명 가능','Root Cause Analysis 수행 가능','8D Report 작성 가능']},
+{group:'품질 도구',items:['SPC 관리도 해석 가능','Cp/Cpk 계산 가능','FMEA RPN 산출 가능','DMAIC 5단계 설명 가능']},
+{group:'Automotive',items:['AEC-Q100 시험 항목 설명 가능','IATF 16949 핵심 요소 이해','Automotive vs Mobile 차이 설명 가능']}
+];
+
+function getChecked(){try{return JSON.parse(localStorage.getItem('dq_check')||'{}');}catch(e){return {};}}
+function saveChecked(obj){localStorage.setItem('dq_check',JSON.stringify(obj));}
+
+function buildCheck(){
+  const checked=getChecked();
+  const total=CHECKLIST.reduce((s,g)=>s+g.items.length,0);
+  const done=Object.values(checked).filter(Boolean).length;
+  const pct=total?Math.round(done/total*100):0;
+  let html=`<div class="sec-title"><span>✅</span> 학습 체크리스트</div>
+  <div class="progress-text">진행률: ${done}/${total} (${pct}%)</div>
+  <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>`;
+  CHECKLIST.forEach(g=>{
+    html+=`<div class="check-group"><h3>${g.group}</h3>`;
+    g.items.forEach(item=>{
+      const key=g.group+'__'+item;
+      const c=checked[key]?'checked':'';
+      const cls=checked[key]?'check-item done':'check-item';
+      html+=`<label class="${cls}"><input type="checkbox" ${c} data-key="${key}">${item}</label>`;
+    });
+    html+=`</div>`;
+  });
+  return html;
+}
+
+// Init
+const navInner=document.getElementById('navInner');
+const mainEl=document.getElementById('mainContent');
+
+TABS.forEach((t,i)=>{
+  const btn=document.createElement('button');
+  btn.className='nav-btn'+(i===0?' active':'');
+  btn.textContent=t.icon+' '+t.label;
+  btn.dataset.tab=t.id;
+  btn.addEventListener('click',()=>switchTab(t.id));
+  navInner.appendChild(btn);
+
+  const div=document.createElement('div');
+  div.className='tab'+(i===0?' active':'');
+  div.id='tab-'+t.id;
+  div.innerHTML=t.id==='check'?buildCheck():CONTENT[t.id];
+  mainEl.appendChild(div);
+});
+
+function switchTab(id){
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.id==='tab-'+id));
+  if(id==='check') document.getElementById('tab-check').innerHTML=buildCheck();
+  bindCheckEvents();
+  const nav=document.getElementById('navBar');
+  if(nav.classList.contains('open')) nav.classList.remove('open');
+}
+
+function bindCheckEvents(){
+  document.querySelectorAll('#tab-check input[type=checkbox]').forEach(cb=>{
+    cb.addEventListener('change',e=>{
+      const obj=getChecked();
+      obj[e.target.dataset.key]=e.target.checked;
+      saveChecked(obj);
+      document.getElementById('tab-check').innerHTML=buildCheck();
+      bindCheckEvents();
+    });
+  });
+}
+bindCheckEvents();
+
+// Theme
+function setTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  document.getElementById('themeBtn').textContent=t==='dark'?'🌙':'☀️';
+  localStorage.setItem('dq_theme',t);
+}
+const saved=localStorage.getItem('dq_theme')||'dark';
+setTheme(saved);
+document.getElementById('themeBtn').addEventListener('click',()=>{
+  setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');
+});
+
+// Hamburger
+document.getElementById('menuBtn').addEventListener('click',()=>{
+  document.getElementById('navBar').classList.toggle('open');
+});
+
+// Splash
+setTimeout(()=>{document.getElementById('splash').classList.add('hide');setTimeout(()=>document.getElementById('splash').remove(),600)},1400);
+</script>
+</body>
+</html>
