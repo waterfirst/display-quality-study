@@ -12,13 +12,28 @@
 [data-theme="light"]{--bg:#f5f5f7;--surface:#ffffff;--surface2:#f0f0f2;--text:#18181b;--text2:#52525b;--ac:#059669;--accent2:#047857;--border:#e4e4e7;--shadow:0 2px 12px rgba(0,0,0,.08)}
 body{font-family:'Noto Sans KR','Inter',sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;min-height:100vh}
 /* Splash */
-#splash{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s}
+#splash{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s;overflow:hidden}
 #splash.hide{opacity:0;pointer-events:none}
-#splash h1{font-size:clamp(1.4rem,4vw,2.2rem);font-weight:700;color:var(--ac);margin-bottom:.5rem;text-align:center;padding:0 1rem}
-#splash p{color:var(--text2);font-size:.95rem}
-#splash .bar{width:120px;height:3px;background:var(--border);border-radius:2px;margin-top:1.5rem;overflow:hidden}
+#splash h1{font-size:clamp(1.4rem,4vw,2.2rem);font-weight:700;color:var(--ac);margin-bottom:.5rem;text-align:center;padding:0 1rem;position:relative;z-index:2}
+#splash p{color:var(--text2);font-size:.95rem;position:relative;z-index:2}
+#splash .bar{width:120px;height:3px;background:var(--border);border-radius:2px;margin-top:1.5rem;overflow:hidden;position:relative;z-index:2}
 #splash .bar span{display:block;height:100%;width:0;background:var(--ac);border-radius:2px;animation:load 1.2s ease forwards}
 @keyframes load{to{width:100%}}
+/* Water drop icon */
+.drop-icon{width:80px;height:80px;margin-bottom:1.5rem;position:relative;z-index:2}
+.drop-icon svg{width:100%;height:100%;filter:drop-shadow(0 4px 20px rgba(16,185,129,.4));animation:dropBounce 1.2s ease-in-out}
+@keyframes dropBounce{0%{transform:translateY(-60px) scale(.7);opacity:0}50%{transform:translateY(8px) scale(1.05);opacity:1}70%{transform:translateY(-4px) scale(.98)}100%{transform:translateY(0) scale(1)}}
+/* Ripple rings */
+.ripple-container{position:absolute;bottom:38%;left:50%;transform:translateX(-50%);z-index:1}
+.ripple{position:absolute;border:2px solid var(--ac);border-radius:50%;opacity:0;transform:translate(-50%,-50%)}
+.ripple:nth-child(1){animation:rippleOut 1.4s .5s ease-out forwards}
+.ripple:nth-child(2){animation:rippleOut 1.4s .7s ease-out forwards}
+.ripple:nth-child(3){animation:rippleOut 1.4s .9s ease-out forwards}
+@keyframes rippleOut{0%{width:10px;height:5px;opacity:.6}100%{width:220px;height:40px;opacity:0}}
+/* Floating mini drops */
+.mini-drops{position:absolute;inset:0;z-index:0;pointer-events:none}
+.mini-drop{position:absolute;width:8px;height:11px;background:radial-gradient(ellipse at 35% 25%,rgba(16,185,129,.5),rgba(16,185,129,.15));border-radius:50% 50% 50% 50%/60% 60% 40% 40%;opacity:0;animation:floatUp var(--dur) var(--delay) ease-in-out forwards}
+@keyframes floatUp{0%{opacity:0;transform:translateY(40px) scale(.5)}30%{opacity:.7}100%{opacity:0;transform:translateY(-80px) scale(.3)}}
 /* Header */
 header{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--border);backdrop-filter:blur(12px)}
 .header-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.75rem 1.25rem}
@@ -110,6 +125,29 @@ tr:hover td{background:var(--surface2)}
 <body>
 <!-- Splash -->
 <div id="splash">
+  <div class="mini-drops" id="miniDrops"></div>
+  <div class="drop-icon">
+    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="dropGrad" cx="40%" cy="35%" r="60%">
+          <stop offset="0%" stop-color="#6ee7b7"/>
+          <stop offset="50%" stop-color="#10b981"/>
+          <stop offset="100%" stop-color="#047857"/>
+        </radialGradient>
+        <radialGradient id="shineGrad" cx="35%" cy="30%" r="30%">
+          <stop offset="0%" stop-color="rgba(255,255,255,.6)"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+        </radialGradient>
+      </defs>
+      <path d="M50 8 C50 8, 15 55, 15 75 C15 97, 30 112, 50 112 C70 112, 85 97, 85 75 C85 55, 50 8, 50 8Z" fill="url(#dropGrad)" stroke="none"/>
+      <ellipse cx="40" cy="60" rx="14" ry="18" fill="url(#shineGrad)" transform="rotate(-15,40,60)"/>
+    </svg>
+  </div>
+  <div class="ripple-container">
+    <div class="ripple"></div>
+    <div class="ripple"></div>
+    <div class="ripple"></div>
+  </div>
   <h1>Display Quality Study Guide 2026</h1>
   <p>TFT 소자 품질 전문가 학습 가이드</p>
   <div class="bar"><span></span></div>
@@ -515,8 +553,23 @@ document.getElementById('menuBtn').addEventListener('click',()=>{
   document.getElementById('navBar').classList.toggle('open');
 });
 
-// Splash
-setTimeout(()=>{document.getElementById('splash').classList.add('hide');setTimeout(()=>document.getElementById('splash').remove(),600)},1400);
+// Splash mini drops
+(function(){
+  const c=document.getElementById('miniDrops');
+  for(let i=0;i<12;i++){
+    const d=document.createElement('div');
+    d.className='mini-drop';
+    d.style.left=Math.random()*90+5+'%';
+    d.style.top=Math.random()*60+20+'%';
+    d.style.setProperty('--delay',(.2+Math.random()*.8)+'s');
+    d.style.setProperty('--dur',(1+Math.random()*.6)+'s');
+    d.style.width=(5+Math.random()*6)+'px';
+    d.style.height=(7+Math.random()*8)+'px';
+    c.appendChild(d);
+  }
+})();
+// Splash hide
+setTimeout(()=>{document.getElementById('splash').classList.add('hide');setTimeout(()=>document.getElementById('splash').remove(),600)},1800);
 </script>
 </body>
 </html>
